@@ -5,29 +5,44 @@ import keyData from './keyData';
 
 let data = keyData;
 
+const containerStyle = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    height: "100%",
+    background: "url(drum-set.jpg)",
+    backgroundSize: "cover"
+}
+
+const keyContainer = {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr 1fr",
+    gridTemplateRows: "1fr 1fr 1fr"
+}
+
 class Container extends React.Component {
     state = {
         display: "Play the Drums!",
-        audio: null
       }
-    playClip = () => {
+    handleDisplay = (display) => {
         this.setState({
-            display: "boom",
-            audio: console.log("boom")
+            display,
         })
     }
     render() {
         return (
-            <div id="drum-machine">
+            <div id="drum-machine" style={containerStyle}>
                 <Display display={this.state.display}/>
-                {data.map(key => (
-                    <Keys
-                        playClip={this.playClip}
-                        key={key.id}
-                        name={key.name}
-                        file={key.file}
-                    />
-                ))}
+                <div className="key-container" style={keyContainer}>
+                    {data.map(key => (
+                        <Keys
+                            id={key.id}
+                            letter={key.letter}
+                            src={key.src}
+                            handleDisplay={this.handleDisplay}
+                        />
+                    ))}
+                </div>
             </div>
     
         )
