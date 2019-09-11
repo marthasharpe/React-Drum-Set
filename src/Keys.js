@@ -15,18 +15,35 @@ const keyStyle = {
 }
 
 class Keys extends React.Component {
+    
+    componentDidMount() {
+        document.addEventListener('keydown', this.handleKeydown)
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleKeydown)
+    }
+
+    handleKeydown = (e) => {
+        if(e.keyCode === this.props.letter.charCodeAt()) {
+            this.audio.play()
+            this.audio.currentTime = 0
+            this.props.handleDisplay(this.props.id)
+        }
+    }
+
     handleClick = () => {
         this.audio.play();
         this.audio.currentTime = 0;
         this.props.handleDisplay(this.props.id);
     }
+    
     render(){
         return (
             <div
                 className="drum-pad"
                 style={keyStyle}
                 id={this.props.id}
-                key={this.props.id}
                 onClick={this.handleClick}
                 >
                 <audio

@@ -36,6 +36,7 @@ class Container extends React.Component {
                 <div className="key-container" style={keyContainer}>
                     {data.map(key => (
                         <Keys
+                            key={key.id}
                             id={key.id}
                             letter={key.letter}
                             src={key.src}
