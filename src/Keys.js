@@ -1,29 +1,19 @@
 import React from 'react';
-import keyData from './keyData';
-
-const data = keyData;
 
 const Keys = (props) => {
-    let keys = data.map(key => {
-                return (
-                    <div
-                    className="drum-pad"
-                    id={key.id}
-                    key={key.name}
-                    onClick={props.playClip}>
-                        <audio
-                        src={key.file}
-                        className="clip"
-                        id={key.name}/>
-                    {key.name}
-                    </div>
-                )
-            });
-    return(
-        <div>
-            {keys}
+    return (
+        <div
+        className="drum-pad"
+        id={props.id}
+        key={props.name}
+        onClick={props.playClip}>
+            <audio
+            src={props.file}
+            className="clip"
+            id={props.name}/>
+        {props.name}
         </div>
-    )
+    );
 }
 
 export default Keys;
