@@ -11,7 +11,8 @@ const keyStyle = {
     textAlign: "center",
     color: "white",
     background: "rgba(0,0,0,0.6)",
-    textShadow: "0 0 .5rem black"
+    textShadow: "0 0 .5rem black",
+    cursor: "pointer"
 }
 
 class Keys extends React.Component {

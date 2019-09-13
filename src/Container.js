@@ -10,8 +10,7 @@ const containerStyle = {
     flexDirection: "column",
     alignItems: "center",
     height: "100%",
-    background: "url(drum-set.jpg)",
-    backgroundSize: "cover"
+
 }
 
 const keyContainer = {
@@ -24,11 +23,13 @@ class Container extends React.Component {
     state = {
         display: "Play the Drums!",
       }
+
     handleDisplay = (display) => {
         this.setState({
             display,
         })
     }
+
     render() {
         return (
             <div id="drum-machine" style={containerStyle}>
