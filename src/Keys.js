@@ -1,35 +1,29 @@
 import React from 'react';
-
-const keyStyle = {
-    border: ".5rem solid black",
-    borderRadius: "50%",
-    transition: "all .07s ease",
-    padding: "1rem",
-    margin: "1rem",
-    height: "4rem",
-    width: "4rem",
-    textAlign: "center",
-    color: "white",
-    background: "rgba(0,0,0,0.6)",
-    textShadow: "0 0 .5rem black",
-    cursor: "pointer"
-}
+import './Keys.css'
 
 class Keys extends React.Component {
     
     componentDidMount() {
-        document.addEventListener('keydown', this.handleKeydown)
+        document.addEventListener('keydown', this.handleKeydown);
+        const drumPads = document.querySelectorAll('.drum-pad');
+        drumPads.forEach(pad => pad.addEventListener('transitionend', this.removeTransition))
     }
 
     componentWillUnmount() {
-        document.removeEventListener('keydown', this.handleKeydown)
+        document.removeEventListener('keydown', this.handleKeydown);
     }
 
+    removeTransition = (e) => {
+        if(e.propertyName !== 'transform') return;
+        this.key.classList.remove('playing');
+    }
+    
     handleKeydown = (e) => {
         if(e.keyCode === this.props.letter.charCodeAt()) {
-            this.audio.play()
-            this.audio.currentTime = 0
-            this.props.handleDisplay(this.props.id)
+            this.audio.play();
+            this.audio.currentTime = 0;
+            this.props.handleDisplay(this.props.id);
+            this.key.classList.add('playing');
         }
     }
 
@@ -37,13 +31,14 @@ class Keys extends React.Component {
         this.audio.play();
         this.audio.currentTime = 0;
         this.props.handleDisplay(this.props.id);
+        this.key.classList.add('playing');
     }
     
     render(){
         return (
             <div
                 className="drum-pad"
-                style={keyStyle}
+                ref={ref => this.key = ref}
                 id={this.props.id}
                 onClick={this.handleClick}
                 >

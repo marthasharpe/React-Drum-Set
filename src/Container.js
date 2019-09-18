@@ -10,7 +10,6 @@ const containerStyle = {
     flexDirection: "column",
     alignItems: "center",
     height: "100%",
-
 }
 
 const keyContainer = {
