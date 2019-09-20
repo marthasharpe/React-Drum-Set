@@ -7,7 +7,7 @@ const displayStyle = {
     width: "20rem",
     textAlign: "center",
     color: "white",
-    background: "rgba(0,0,0,0.6)",
+    background: "rgba(0,0,0,0.8)",
     textShadow: "0 0 .5rem black"
 }
 
