@@ -1,18 +1,18 @@
 import React from 'react';
 import './Keys.css'
 
-const context = new AudioContext();
-
 class Keys extends React.Component {
- 
+    
     componentDidMount() {
+        this.audioContext = new AudioContext();
+        this.audioContext.resume();
         document.addEventListener('keydown', this.handleKeydown);
         const drumPads = document.querySelectorAll('.drum-pad');
         drumPads.forEach(pad => pad.addEventListener('transitionend', this.removeTransition))
-
     }
 
     componentWillUnmount() {
+        this.audioContext.close();
         document.removeEventListener('keydown', this.handleKeydown);
     }
 
@@ -23,7 +23,6 @@ class Keys extends React.Component {
     
     handleKeydown = (e) => {
         if(e.keyCode === this.props.letter.charCodeAt()) {
-            context.resume();
             this.audio.play();
             this.audio.currentTime = 0;
             this.props.handleDisplay(this.props.id);
@@ -32,7 +31,6 @@ class Keys extends React.Component {
     }
 
     handleClick = () => {
-        context.resume();
         this.audio.play();
         this.audio.currentTime = 0;
         this.props.handleDisplay(this.props.id);
