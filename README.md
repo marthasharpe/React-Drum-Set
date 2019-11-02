@@ -8,4 +8,4 @@ I learned a lot about React lifecycle methods to add event listeners and refs.
 
 Visit the page [here](https://react-drumset.netlify.com) or watch the video below.
 
-[![React Drum Set](http://img.youtube.com/vi/pTvgmmzq67s/0.jpg)](http://www.youtube.com/watch?v=pTvgmmzq67s "React Drum Set")
+[![React-Drum-Kit](http://img.youtube.com/vi/PjTAL3Ja3a0/0.jpg)](http://www.youtube.com/watch?v=PjTAL3Ja3a0 "React-Drum-Kit")
