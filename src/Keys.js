@@ -3,16 +3,18 @@ import './Keys.css'
 
 class Keys extends React.Component {
     
+    UNSAFE_componentWillMount() {
+        this.context = new AudioContext();
+        this.context.resume();
+    }
+
     componentDidMount() {
-        this.audioContext = new AudioContext();
-        this.audioContext.resume();
         document.addEventListener('keydown', this.handleKeydown);
         const drumPads = document.querySelectorAll('.drum-pad');
         drumPads.forEach(pad => pad.addEventListener('transitionend', this.removeTransition))
     }
 
     componentWillUnmount() {
-        this.audioContext.close();
         document.removeEventListener('keydown', this.handleKeydown);
     }
 
@@ -20,19 +22,22 @@ class Keys extends React.Component {
         if(e.propertyName !== 'transform') return;
         this.key.classList.remove('playing');
     }
-    
+
+    handleAudio = () => {
+        this.audio.play();
+        this.audio.currentTime = 0;
+    }
+
     handleKeydown = (e) => {
         if(e.keyCode === this.props.letter.charCodeAt()) {
-            this.audio.play();
-            this.audio.currentTime = 0;
+            this.handleAudio();
             this.props.handleDisplay(this.props.id);
             this.key.classList.add('playing');
         }
     }
 
     handleClick = () => {
-        this.audio.play();
-        this.audio.currentTime = 0;
+        this.handleAudio();
         this.props.handleDisplay(this.props.id);
         this.key.classList.add('playing');
     }

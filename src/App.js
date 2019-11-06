@@ -1,9 +1,11 @@
 import React from 'react';
 import Container from './Container';
+import './App.css';
 
 function App() {
+
   return (
-    <div className="app-container" style={{height: "100%"}}>
+    <div className="app-container">
       <Container />
     </div>
   );
